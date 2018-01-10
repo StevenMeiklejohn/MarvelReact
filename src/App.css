@@ -1,28 +1,52 @@
-.App {
+@font-face {
+  font-family: 'Marvel';
+  src: url('./my_fonts/the-fontry_avengeance/AVENGEANCE HEROIC AVENGER BD.ttf') format('truetype');
+}
+
+
+h2{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: 50px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+body{
+  font-family: "Marvel", Times, serif;
   color: white;
+  font-size: 50px;
+  background-color: #e23636;
 }
 
-.App-title {
-  font-size: 1.5em;
+ul {
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: 50px;
+  background-color: #e23636;
+  text-align: center;
 }
 
-.App-intro {
-  font-size: large;
+p{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: 50px;
+  background-color: #e23636;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+h4 {
+  text-align: center;
+}
+
+.image {
+  margin: auto;
+}
+
+#logo{
+  text-align: center;
+}
+
+
+#button-wrapper {
+  text-align:center;
 }
