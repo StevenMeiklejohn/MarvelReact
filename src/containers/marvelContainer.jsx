@@ -1,5 +1,7 @@
 import React from 'react'
 import MD5 from 'crypto-js/md5'
+import Details from './../components/details'
+import DetailsBox from './../components/detailsBox'
 import FrontCover from './../components/frontCover'
 
 
@@ -10,7 +12,9 @@ class MarvelContainer extends React.Component{
     super(props);
     this.state = {
       comic: null,
-      frontCover: null
+      frontCover: null,
+      title: null,
+      creators: []
     }
     this.getRandomInt = this.getRandomInt.bind(this);
     this.md5 = this.md5.bind(this);
@@ -57,9 +61,16 @@ class MarvelContainer extends React.Component{
         var marvel = JSON.parse(jsonString);
         this.setState({comic: marvel.data});
         this.setState({frontCover: marvel.data.results[0].thumbnail.path});
+        this.setState({title: marvel.data.results[0].title})
+
+        var creatorArray = marvel.data.results[0].creators.items;
+        var newArray = this.state.creators.concat(creatorArray);
+        this.setState({creators: newArray});
+
         console.log(this.state.comic);
         console.log(this.state.frontCover);
-
+        console.log(this.state.title);
+        console.log(this.state.creators);
       }
     }
     request.send();
@@ -69,11 +80,13 @@ class MarvelContainer extends React.Component{
   render(){
     return(
       <div>
-      <h4>Welcome to the Marvel API</h4>
+      <h4>Welcome to the Random Marvel Comic Generator</h4>
       <FrontCover cover={this.state.frontCover} />
+      <h4>{this.state.title}</h4>
+      <DetailsBox creators={this.state.creators} />
       </div>
     )
-}
+  }
 }
 
-export default MarvelContainer
+export default MarvelContainer;
