@@ -5,7 +5,7 @@ class DetailsBox extends React.Component {
 
 
   render(){
-    console.log(this.props);
+    // console.log(this.props);
     var creatorNodes = this.props.creators.map(function(creator) {
     return(
       <Details name={creator.name} role={creator.role}>
