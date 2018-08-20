@@ -46,6 +46,7 @@ class CharacterSelector extends React.Component{
 
     return(
       <div className="characterSelector">
+        <p>Select a Character</p>
       <select>
       {this.sorted_options}
       </select>

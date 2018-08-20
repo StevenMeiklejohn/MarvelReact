@@ -3,3 +3,52 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+
+.characterSelector{
+  display: inline-block;
+  float: left;
+  margin-left: 50px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.characterSearch{
+  position: absolute;
+  left: 50px;
+  top: 430px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+
+
+.creatorSearch{
+  position: absolute;
+  left: 50px;
+  top: 680px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding-top: 15px;
+  padding-right: 100px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.titleSearch{
+  position: absolute;
+  left: 50px;
+  top: 930px;
+  height: 200px;
+  border: 5px solid white;
+  border-radius: 25px;
+  padding: 15px; 
+}
