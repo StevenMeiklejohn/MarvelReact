@@ -4,6 +4,7 @@ import Details from './../components/details'
 import DetailsBox from './../components/detailsBox'
 import FrontCover from './../components/frontCover'
 import CharacterSelector from './../components/characterSelector'
+const _ = require('lodash');
 
 const api = require('marvel-api');
 
@@ -92,27 +93,42 @@ class MarvelContainer extends React.Component{
   //   request.send();
   // };
 
-  get_500_characters(){
+  // get_500_characters(){
+  //   let offset = 0;
+  //   let new_chars = []
+  //   while(offset < 500){
+  //     new_chars.push(this.get_characters(100, offset));
+  //     offset += 100;
+  //   };
+  //   console.log(new_chars);
+  //   this.setState({characters: new_chars});
+  //   console.log(this.state.characters);
+  // }
+
+
+  async get_500_characters() {
     let offset = 0;
-    let chars = [];
-    while(offset < 500){
-      chars.push(this.get_characters(100, offset));
-      offset += 100;
-    };
-    console.log(chars);
-    this.setState({characters: chars})
-    console.log(this.state.characters);
+    let new_chars = [];
+    const promises = [];
+    for(var i = 0; i < 1500; i+=100){
+      const getCharacterPromise = this.get_characters(100, i)
+      promises.push(getCharacterPromise)
+    }
+    await Promise.all(promises)
   }
 
 
-
   get_characters(num_to_get, index_offset){
+    let chars = this.state.characters;
     this.marvel.characters.findAll(num_to_get, index_offset)
     .then(function(res){
-      console.log("Get characters response (100, offset 100)", res.data);
+      chars.push(res.data);
+      this.setState({characters: chars});
+      console.log(this.state.characters);
     }.bind(this))
     .fail(console.error)
     .done();
+
   }
 
 
