@@ -18,7 +18,6 @@ class MarvelContainer extends React.Component{
       creator: null,
       characters:[],
       character: null,
-      fetching_characters: false
     }
     this.getRandomInt = this.getRandomInt.bind(this);
     this.md5 = this.md5.bind(this);
@@ -45,7 +44,7 @@ class MarvelContainer extends React.Component{
     // this.search_for_creator_by_surname('Starlin');
     // this.search_for_creator_by_id(146);
     // this.get_characters(100, 100);
-    // this.get_all_characters();
+    this.get_all_characters();
   }
 
 
@@ -66,7 +65,9 @@ class MarvelContainer extends React.Component{
       const getCharacterPromise = this.get_characters(100, i)
       promises.push(getCharacterPromise)
     }
+    this.setState({fetching_characters: false});
     await Promise.all(promises)
+
   }
 
   get_characters(num_to_get, index_offset){
@@ -138,5 +139,6 @@ class MarvelContainer extends React.Component{
     )
   }
 }
+
 
 export default MarvelContainer;

@@ -15,7 +15,7 @@ class DetailsContainer extends React.Component{
       creators: [],
       characters:[],
       character: null,
-      fetching_characters: false
+      display: "random_comic"
     }
     this.getRandomInt = this.getRandomInt.bind(this);
     this.md5 = this.md5.bind(this);
@@ -51,7 +51,7 @@ class DetailsContainer extends React.Component{
     // create new date object
     var ts = new Date().getTime();
     // generate random in between 1 and 50000
-    var randomNumber = this.getRandomInt(1, 50000);
+    var randomNumber = this.getRandomInt(1, 10000);
     // target api
     var url = "http://gateway.marvel.com:80/v1/public/comics/" + randomNumber + "?apikey=1a11ffc2c79394bdd4e7a7b8d97c43a9";
     // create a hash using md5 function
@@ -85,7 +85,7 @@ class DetailsContainer extends React.Component{
           <FrontCover cover={this.state.frontCover}/>
         </div>
         <div className="detailsBox">
-          <DetailsBox creators={this.state.creators}/>
+          <DetailsBox creators={this.state.creators} title={this.state.title}/>
         </div>
 
       </div>

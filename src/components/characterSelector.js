@@ -18,8 +18,13 @@ class CharacterSelector extends React.Component{
 
 
   render(){
-    if(!this.props.characters){
-      return null;
+    if(this.props.characters.length < 10){
+      return(
+        <div className="characterSelector">
+          <p class="animated infinite lightSpeedIn delay-2s">Fetching Characters..</p>
+          <p class="animated infinite lightSpeedIn delay-2s">Haud Yer Horses..</p>
+        </div>
+      )
     }
     let characters = this.props.characters;
     console.log(characters);

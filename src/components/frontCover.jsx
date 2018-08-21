@@ -4,6 +4,7 @@ import React from 'react'
 class FrontCover extends React.Component{
 
   render(){
+    if(this.props.cover){
     return(
       <React.Fragment>
         <div className="randomSuggestion">
@@ -14,7 +15,14 @@ class FrontCover extends React.Component{
       </div>
     </React.Fragment>
     )
+  }else{
+    return(
+    <React.Fragment>
+      <p class="animated infinite lightSpeedIn delay-2s">Fetching..</p>
+    </React.Fragment>
+  )
   }
+}
 }
 
 export default FrontCover
