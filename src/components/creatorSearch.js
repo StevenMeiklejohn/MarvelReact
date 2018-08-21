@@ -1,6 +1,4 @@
 import React from 'react';
-const _ = require('lodash');
-
 
 class CreatorSearch extends React.Component{
 

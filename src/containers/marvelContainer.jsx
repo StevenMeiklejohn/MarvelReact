@@ -1,13 +1,10 @@
 import React from 'react'
 import MD5 from 'crypto-js/md5'
-import Details from './../components/details'
-import DetailsBox from './../components/detailsBox'
-import FrontCover from './../components/frontCover'
 import CharacterSelector from './../components/characterSelector'
 import CreatorSearch from './../components/creatorSearch'
 import CharacterSearch from './../components/characterSearch'
 import TitleSearch from './../components/titleSearch'
-const _ = require('lodash');
+import RandomComic from './detailsContainer'
 
 const api = require('marvel-api');
 
@@ -62,45 +59,8 @@ class MarvelContainer extends React.Component{
     return MD5(value).toString();
   };
 
-  getRandomComic(){
-    // keys for API
-    var PRIV_KEY = "403c5f3406be455684061d92266dea467b382bdc";
-    var API_KEY = "1a11ffc2c79394bdd4e7a7b8d97c43a9";
-    // create new date object
-    var ts = new Date().getTime();
-    // generate random in between 1 and 50000
-    var randomNumber = this.getRandomInt(1, 50000);
-    // target api
-    var url = "http://gateway.marvel.com:80/v1/public/comics/" + randomNumber + "?apikey=1a11ffc2c79394bdd4e7a7b8d97c43a9";
-    // create a hash using md5 function
-    var hash = this.md5(ts + PRIV_KEY + API_KEY);
-    // modify url with hash
-    url += "&ts="+ts+"&hash="+hash;
-    // make request
-    // ============
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-    request.onload = () =>  {
-      if (request.status === 200) {
-        var jsonString = request.responseText;
-        var marvel = JSON.parse(jsonString);
-        this.setState({comic: marvel.data});
-        this.setState({frontCover: marvel.data.results[0].thumbnail.path});
-        this.setState({title: marvel.data.results[0].title})
-
-        var creatorArray = marvel.data.results[0].creators.items;
-        var newArray = this.state.creators.concat(creatorArray);
-        this.setState({creators: newArray});
-
-
-      }
-    }
-    request.send();
-  };
 
   async get_all_characters() {
-    let offset = 0;
-    let new_chars = [];
     const promises = [];
     for(var i = 0; i < 1500; i+=100){
       const getCharacterPromise = this.get_characters(100, i)
@@ -170,6 +130,9 @@ class MarvelContainer extends React.Component{
         </div>
         <div>
           <TitleSearch/>
+        </div>
+        <div>
+          <RandomComic/>
         </div>
       </React.Fragment>
     )

@@ -1,6 +1,4 @@
 import React from 'react';
-const _ = require('lodash');
-
 
 class TitleSearch extends React.Component{
 

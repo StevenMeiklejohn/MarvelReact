@@ -1,6 +1,4 @@
 import React from 'react';
-const _ = require('lodash');
-
 
 class CharacterSearch extends React.Component{
 
