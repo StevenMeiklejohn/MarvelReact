@@ -2,6 +2,7 @@ import React from 'react'
 import MD5 from 'crypto-js/md5'
 import DetailsBox from './../components/detailsBox'
 import FrontCover from './../components/frontCover'
+import CharacterSeriesSelector from './../components/characterSeriesSelector'
 
 const api = require('marvel-api');
 
@@ -79,6 +80,15 @@ class DetailsContainer extends React.Component{
 
 
   render(){
+
+    if (this.props.character) {
+      return(
+        <div className="seriesSelector">
+          <CharacterSeriesSelector character={this.props.character} />
+        </div>
+      )
+    }else{
+
     return(
       <div className="resultsDisplay">
         <div className="frontCover">
@@ -91,6 +101,7 @@ class DetailsContainer extends React.Component{
       </div>
     )
   }
+}
 }
 
 export default DetailsContainer;

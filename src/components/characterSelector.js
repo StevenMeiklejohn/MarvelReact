@@ -11,9 +11,9 @@ class CharacterSelector extends React.Component{
   }
 
   flattenCharactersObject(object){
-      console.log("pre flattened", object);
+      // console.log("pre flattened", object);
       let flattened = _.flattenDeep(object);
-      console.log("flattened", flattened);
+      // console.log("flattened", flattened);
   }
 
 
@@ -27,11 +27,11 @@ class CharacterSelector extends React.Component{
       )
     }
     let characters = this.props.characters;
-    console.log(characters);
-    console.log(typeof characters);
+    // console.log(characters);
+    // console.log(typeof characters);
     this.flattenCharactersObject(characters);
-    console.log(characters);
-    console.log(characters.length);
+    // console.log(characters);
+    // console.log(characters.length);
     let flatChars = [];
     let orderedChars = [];
     let ordered_options = [];
@@ -52,7 +52,7 @@ class CharacterSelector extends React.Component{
     return(
       <div className="characterSelector">
         <p>Select a Character</p>
-      <select>
+      <select onChange={this.props.onChange}>
       {this.sorted_options}
       </select>
       </div>

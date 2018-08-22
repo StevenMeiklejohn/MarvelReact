@@ -4,7 +4,7 @@ import CharacterSelector from './../components/characterSelector'
 import CreatorSearch from './../components/creatorSearch'
 import CharacterSearch from './../components/characterSearch'
 import TitleSearch from './../components/titleSearch'
-import RandomComic from './detailsContainer'
+import DetailsContainer from './detailsContainer'
 
 const api = require('marvel-api');
 
@@ -27,6 +27,7 @@ class MarvelContainer extends React.Component{
     this.search_for_creator_by_id = this.search_for_creator_by_id.bind(this);
     this.get_characters = this.get_characters.bind(this);
     this.get_all_characters = this.get_all_characters.bind(this);
+    this.handleCharacterSelector = this.handleCharacterSelector.bind(this);
 
 
     this.marvel = api.createClient({
@@ -76,18 +77,26 @@ class MarvelContainer extends React.Component{
     .then(function(res){
       chars.push(res.data);
       this.setState({characters: chars});
-      console.log(this.state.characters);
+      // console.log(this.state.characters);
     }.bind(this))
     .fail(console.error)
     .done();
+  }
+
+  handleCharacterSelector(event){
+    console.log(event.target.value);
+    console.log(event.target.key);
+    this.search_for_character(event.target.value);
 
   }
 
   search_for_character(character){
     this.marvel.characters.findByName(character)
     .then(function(res) {
-      console.log("Search for character results", res.data[0]);
-      return this.marvel.characters.comics(res.data[0].id);
+      this.setState({character: res.data});
+      console.log(this.state.character);
+      // console.log("Search for character results", res.data[0]);
+      // return this.marvel.characters.comics(res.data[0].id);
     }.bind(this))
     .fail(console.error)
     .done();
@@ -121,7 +130,8 @@ class MarvelContainer extends React.Component{
       <React.Fragment>
         <h4>Welcome to the Marvel Unlimited Reading List</h4>
         <div>
-          <CharacterSelector characters={this.state.characters}/>
+          <CharacterSelector characters={this.state.characters}
+            onChange={this.handleCharacterSelector}/>
         </div>
         <div>
           <CharacterSearch/>
@@ -133,7 +143,7 @@ class MarvelContainer extends React.Component{
           <TitleSearch/>
         </div>
         <div>
-          <RandomComic/>
+          <DetailsContainer character={this.state.character}/>
         </div>
       </React.Fragment>
     )
